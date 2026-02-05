@@ -2,7 +2,7 @@
 
 Laboratorium VPS ukierunkowane na bezpieczeństwo, prezentujące architekturę z serwerem w strefie DMZ oraz serwerem wewnętrznym, z kontrolowanym dostępem pomiędzy strefami.
 
-🚧 **Status projektu:** w trakcie realizacji (work in progress)
+🚧 **Status projektu:** w trakcie realizacji, informacje o bieżących zmianach dostępne w CHANGELOG.md
 
 
 ## Cele projektu
@@ -108,7 +108,7 @@ Celem jest symulacja podstawowych zadań realizowanych w SOC:
 
 - [x] Utworzenie infrastruktury VPS
 - [x] Podstawowe zabezpieczenia (UFW, Fail2Ban)
-- [ ] Konfiguracja VPN site-to-site
+- [x] Konfiguracja VPN site-to-site
 - [ ] Wdrożenie modelu SSH opartego o klucze
 - [ ] Centralizacja logów
 - [ ] Wdrożenie SIEM / IDS
@@ -119,7 +119,7 @@ Celem jest symulacja podstawowych zadań realizowanych w SOC:
 
 Projekt ma charakter edukacyjny i demonstracyjny.  
 
-Bieżące informacje o postępach projektu dostępne w pliku UPDATE.txt
+Bieżące informacje o postępach projektu dostępne w pliku CHANGELOG.md
 
 
 
