@@ -1,3 +1,22 @@
+# 6 luty 2026 r.
+
+## Aktualizacja serwera Hytale
+
+W związku z potrzebą działania serwera niezależnie od mojej łączności przez SSH, zdecydowałem się wykorzystać narzędzie tmux umożliwiające zarządzanie różnymi sesjami terminala oraz utrzymywanie procesów w tle, nawet po rozłączeniu SSH.
+Dodatkowo, podobnie jak w przypadku VPN'a uruchomiłem autostart serwera Hytale po reboocie poprzez stworzenie nowego usera 'hytale' ograniczonego do wykonania skryptu uruchamiającego serwer gry (połączenie ssh jest dla niego zablokowane). Usługa systemd uruchamia narzędzie tmux, które tworzy nową sesję, a następnie w kontekście użytkownika "hytale" wykonuje skrypt "start.sh" znajdujący się w folderze serwera gry (/opt/hytale/server). Po drodze były lekkie komplikacje związane ze złymi uprawnieniami usr 'hytale', z niepotrzebnymi zabezpieczeniami sesji tego samego użytkownika (miało to zwiększyć bezpieczeństwo serwera, ale w finale ograniczyło prawidłowe funkcjonowanie, więc zdecydowałem się w pełni polegać na zablokowanym połączeniu ssh)
+
+<img width="396" height="33" alt="image" src="https://github.com/user-attachments/assets/4f763a08-2232-40bf-8bee-bdb31033f413" />
+<br></br>
+<img width="1204" height="256" alt="hytale_systemctl" src="https://github.com/user-attachments/assets/1c3c38a3-a6b3-446c-8cce-bb74b986a9d2" />
+<br></br>
+Wideo (niska jakość ze względu na limit GitHub'a): https://github.com/user-attachments/assets/672a2064-f9c9-4261-beac-1feb1d0a7782
+<br></br>
+<img width="941" height="648" alt="hytale_tmux" src="https://github.com/user-attachments/assets/928a24eb-4ea6-4658-b7e0-c78454dd91a3" />
+
+
+
+
+
 # 5 luty 2026 r.
 
 ## VPN S2S
