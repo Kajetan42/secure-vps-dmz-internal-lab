@@ -100,8 +100,8 @@ Celem jest symulacja podstawowych zadań realizowanych w SOC:
 - UFW
 - Fail2Ban
 - SSH
-- VPN (WireGuard – planowane)
-- SIEM / HIDS (planowane)
+- VPN
+- SIEM / HIDS
 
 
 ## Roadmapa
@@ -109,10 +109,11 @@ Celem jest symulacja podstawowych zadań realizowanych w SOC:
 - [x] Utworzenie infrastruktury VPS
 - [x] Podstawowe zabezpieczenia (UFW, Fail2Ban)
 - [x] Konfiguracja VPN site-to-site
+- [x] Wdrożenie SIEM / IDS 
+- [x] Centralizacja logów
 - [ ] Wdrożenie modelu SSH opartego o klucze
-- [ ] Centralizacja logów
-- [ ] Wdrożenie SIEM / IDS
-- [ ] Testowe scenariusze ataków (bruteforce, skany)\
+- [ ] Postawienie bazy danych i API
+- [ ] Testowe scenariusze ataków (bruteforce, skany)
 
 
 ## Informacja końcowa
