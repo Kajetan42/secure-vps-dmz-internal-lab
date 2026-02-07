@@ -1,9 +1,53 @@
+# 7 luty 2026 r.
+
+## Wazuh
+
+Nadszedł moment na wdrożenie narzędzia do monitorowania bezpieczeństwa serwerów. W tym celu zdecydowałem się na Wazuh, czyli darmową, open-source’ową platformę służącą do wykrywania zagrożeń, korelacji zdarzeń oraz centralnej agregacji logów.
+Etap implementacji Wazuh okazał się jednym z najbardziej wymagających w całym projekcie. Wynikało to z wysokiego poziomu złożoności architektury, konieczności poprawnej konfiguracji komponentów oraz problemów napotkanych podczas integracji strefy DMZ z siecią Internal.
+<br></br>
+Architektura wdrożenia:
+
+<strong>DMZ VPS:</strong> Wazuh Agent
+
+<strong>Internal VPS:</strong> Wazuh Manager, Wazuh Indexer, Wazuh Dashboard
+<br></br>
+W trakcie wdrożenia wystąpiły problemy z widocznością agenta po stronie managera oraz niestabilnością dashboardu. Aby je rozwiązać:
+- dodałem regułę UFW zezwalającą na komunikację na porcie 1514/tcp (próby konfiguracji UDP wraz z modyfikacją plików konfiguracyjnych nie przyniosły rezultatu w wersji 4.14.2-1)
+- zaktualizowałem wersję usług Wazuh na Internal VPS z 4.7.5 do 4.14.2-1, gdyż agent na DMZ VPS miał 4.14.2-1 co było przyczyną niekompatybilności
+- skonfigurowałem odpowiednio agenta
+- przeniosłem certyfikaty do właściwych katalogów oraz nadałem im poprawne uprawnienia.
+
+Aktualnie Wazuh monitoruje:
+- logi systemowe
+- logowania przez SSH
+- działania reguł zapory UFW
+- reakcje i bany generowane przez fail2ban
+
+Więcej zrzutów ekranu zostanie dodanych w kolejnej aktualizacji changelog'a.
+
+
+<img width="1919" height="1031" alt="wazuh_dashboard" src="https://github.com/user-attachments/assets/a0b96ed7-70c5-49d8-8673-11cd1e66253a" />
+
+
+
 # 6 luty 2026 r.
 
-## Aktualizacja serwera Hytale
+## Aktualizacja serwera Hytale (DMZ)
 
-W związku z potrzebą działania serwera niezależnie od mojej łączności przez SSH, zdecydowałem się wykorzystać narzędzie tmux umożliwiające zarządzanie różnymi sesjami terminala oraz utrzymywanie procesów w tle, nawet po rozłączeniu SSH.
-Dodatkowo, podobnie jak w przypadku VPN'a uruchomiłem autostart serwera Hytale po reboocie poprzez stworzenie nowego usera 'hytale' ograniczonego do wykonania skryptu uruchamiającego serwer gry (połączenie ssh jest dla niego zablokowane). Usługa systemd uruchamia narzędzie tmux, które tworzy nową sesję, a następnie w kontekście użytkownika "hytale" wykonuje skrypt "start.sh" znajdujący się w folderze serwera gry (/opt/hytale/server). Po drodze były lekkie komplikacje związane ze złymi uprawnieniami usr 'hytale', z niepotrzebnymi zabezpieczeniami sesji tego samego użytkownika (miało to zwiększyć bezpieczeństwo serwera, ale w finale ograniczyło prawidłowe funkcjonowanie, więc zdecydowałem się w pełni polegać na zablokowanym połączeniu ssh)
+W związku z potrzebą uruchamiania serwera Hytale niezależnie od mojej obecności na SSH, zdecydowałem się wykorzystać narzędzie tmux, które pozwala na zarządzanie sesjami terminala oraz utrzymywanie procesów w tle nawet po rozłączeniu SSH.
+
+Dodatkowo, podobnie jak w przypadku VPN skonfigurowałem autostart serwera Hytale po reboocie systemu. W tym celu utworzyłem nowego użytkownika "hytale", ograniczonego wyłącznie do uruchamiania skryptu startującego serwer gry. Połączenia SSH dla tego użytkownika zostały całkowicie zablokowane.
+
+Mechanizm działania wygląda następująco:
+- usługa systemd uruchamia tmux
+- tmux tworzy nową sesję, w kontekście użytkownika hytale wykonywany jest skrypt start.sh
+- skrypt znajduje się w katalogu /opt/hytale/server
+
+W trakcie konfiguracji pojawiły się drobne komplikacje związane z:
+- nieprawidłowymi uprawnieniami użytkownika hytale
+- dodatkowymi zabezpieczeniami sesji tego samego użytkownika, które miały zwiększyć bezpieczeństwo, ale w praktyce ograniczały poprawne działanie serwera
+
+Finalnie zdecydowałem się uprościć to rozwiązanie i oprzeć bezpieczeństwo głównie na zablokowanym dostępie SSH dla użytkownika hytale, co pozwoliło zachować równowagę między bezpieczeństwem a stabilnym działaniem serwera.
 
 <img width="396" height="33" alt="image" src="https://github.com/user-attachments/assets/4f763a08-2232-40bf-8bee-bdb31033f413" />
 <br></br>
