@@ -1,3 +1,11 @@
+# February 11, 2026
+
+## Updating SSH Keys
+
+The previous day, I implemented a key-only authentication method for both the DMZ VPS and the internal VPS. I also changed the firewall rules to allow only my home IP address to connect to the internal VPS (SSH), and only the internal IP address to log in via SSH to the DMZ. A KVM from the VPS provider is acting as the breaking glass. In an emergency, it will serve as an access point to the DMZ system.
+
+(Screenshots will be posted until February 12, 2026.)
+
 # February 7, 2026
 
 ## Wazuh
