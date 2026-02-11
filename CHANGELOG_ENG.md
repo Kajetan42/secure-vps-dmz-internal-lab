@@ -6,6 +6,13 @@ The previous day, I implemented a key-only authentication method for both the DM
 
 (Screenshots will be posted until February 12, 2026.)
 
+## Patching the Hytale Server
+
+After the server reboot, it turned out that blocking the user hytale from accessing /bin/bash was a critical mistake,
+which prevented tmux from starting. Most likely, a previously started manual instance of this process must have remained active, which distracted me and created the impression that the process was working correctly.
+It's difficult for me to say for sure, as this entire project is my first Linux-based infrastructure, which means I'm constantly experimenting and learning new things.
+As of today, everything is working properly. The Hytale Server starts after a reboot, while the SSH connection block for the hytale user is defined only in configuration files.
+
 # February 7, 2026
 
 ## Wazuh
