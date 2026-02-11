@@ -6,6 +6,14 @@ Poprzedniego dnia wdrożyłem metodę uwierzytelniania wyłącznie poprzez klucz
 
 (Zrzuty ekranu będą opublikowane do 12 lutego 2026 r.)
 
+## Patchowanie serwera Hytale
+
+Po reboocie serwera okazało się, że zablkowanie użytkownikowi hytale dostępu do /bin/bash było kardynalnym błędem,
+który uniemożliwił uruchomienie tmux. Prawdopodobnie wcześniejsze, ręczne uruchomienie tego procesu musiało pozostać aktywne co odciągnęło moją uwagę i stworzyło wrażenie działającego poprawnie procesu.
+Ciężko mi to jednoznacznie stwierdzić, gdyż cały ten projekt jest moją pierwszą taką infrastrukturą w oparciu o Linuxa, co sprawia, że ciągle doświadczam i uczę się nowych rzeczy.
+Na dzień dzisiejszy jest już w porządku, serwer Hytale startuje po reboocie, natomiast blokada SSH dla użytkownika hytale jest opisana wyłącznie w plikach konfiguracyjnych.
+
+
 # 7 luty 2026 r.
 
 ## Wazuh
