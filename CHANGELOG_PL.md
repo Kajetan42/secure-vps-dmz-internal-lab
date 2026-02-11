@@ -1,6 +1,6 @@
 # 11 luty 2026 r.
 
-# Aktualizacja kluczy SSH
+## Aktualizacja kluczy SSH
 
 Poprzedniego dnia wdrożyłem metodę uwierzytelniania wyłącznie poprzez klucze zarówno dla dmz vps'a jak i internal vps'a. Dodatkowo zmieniłem reguły na firewall'u, które zezwalają na połączenie do internala (ssh) tylko mojemu domowemu adresowi IP, natomiast logowanie SSH do DMZ, tylko i wyłącznie adresowi IP należącemu do internala. Za breaking-glass robi KVM od dostawcy VPS, w awaryjnej sytuacji posłuży jako access point do systemu DMZ.
 
