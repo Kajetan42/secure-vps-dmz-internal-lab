@@ -4,7 +4,26 @@
 
 The previous day, I implemented a key-only authentication method for both the DMZ VPS and the internal VPS. I also changed the firewall rules to allow only my home IP address to connect to the internal VPS (SSH), and only the internal IP address to log in via SSH to the DMZ. A KVM from the VPS provider is acting as the breaking glass. In an emergency, it will serve as an access point to the DMZ system.
 
-(Screenshots will be posted until February 12, 2026.)
+
+<img width="472" height="118" alt="SSH-password-internal" src="https://github.com/user-attachments/assets/c0e498e7-744f-4c0a-bc72-d1ffa942905a" />
+<br></br>
+<img width="503" height="103" alt="SSH-key-internal" src="https://github.com/user-attachments/assets/5579eff6-bef5-4a7d-adbc-0d701935e1c9" />
+
+(Above are two examples of logging in to the internal VPS from my home network, the first one was blocked when trying with a password, the second one was correct with privatekey)
+<br></br>
+<br></br>
+<img width="663" height="158" alt="ssh-pass-mypc-dmz" src="https://github.com/user-attachments/assets/7b3bfbe2-8d8a-4b92-858e-4ac64f9d7439" />
+
+(The screenshot above shows logging in from my home network to the dmz. The firewall allows access only from the internal VPS IP address)
+<br></br>
+<br></br>
+<img width="435" height="66" alt="ssh-pass-internal-dmz" src="https://github.com/user-attachments/assets/2a8cad04-0f27-468b-ba04-19234cf696f9" />
+<br></br>
+<img width="528" height="78" alt="SSH-key-internal-dmz" src="https://github.com/user-attachments/assets/1bf292f5-8686-4390-967f-ca1e597bc7d8" />
+
+(Above two examples of logging to the DMZ VPS from Internal VPS, the first one blocked when trying with a password, the second one correct with privatekey)
+<br></br>
+<br></br>
 
 ## Patching the Hytale Server
 
@@ -12,6 +31,7 @@ After the server reboot, it turned out that blocking the user hytale from access
 which prevented tmux from starting. Most likely, a previously started manual instance of this process must have remained active, which distracted me and created the impression that the process was working correctly.
 It's difficult for me to say for sure, as this entire project is my first Linux-based infrastructure, which means I'm constantly experimenting and learning new things.
 As of today, everything is working properly. The Hytale Server starts after a reboot, while the SSH connection block for the hytale user is defined only in configuration files.
+<br></br>
 
 # February 7, 2026
 
@@ -36,9 +56,16 @@ Wazuh is currently actively monitoring:
 - UFW firewall rule activity
 - Fail2Ban actions and active bans
 
-More screenshots will be added in the next changelog update.
 
+<img width="689" height="173" alt="wazuh_agents" src="https://github.com/user-attachments/assets/42809731-69f1-4557-8a2e-0a5e556e7877" />
+<br></br>
 <img width="1919" height="1031" alt="wazuh_dashboard" src="https://github.com/user-attachments/assets/a0b96ed7-70c5-49d8-8673-11cd1e66253a" />
+<br></br>
+(To log in to the dashboard page, I need to connect to the Internal VPS IP from my home network on port 443 and then provide my login details)
+
+<br></br>
+
+<img width="1919" height="965" alt="wazuh-agent" src="https://github.com/user-attachments/assets/f6279338-6368-494a-b40f-ff763d6978cd" />
 
 
 # February 6, 2026
