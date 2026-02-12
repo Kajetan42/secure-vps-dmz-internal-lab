@@ -4,7 +4,27 @@
 
 Poprzedniego dnia wdrożyłem metodę uwierzytelniania wyłącznie poprzez klucze zarówno dla dmz vps'a jak i internal vps'a. Dodatkowo zmieniłem reguły na firewall'u, które zezwalają na połączenie do internala (ssh) tylko mojemu domowemu adresowi IP, natomiast logowanie SSH do DMZ, tylko i wyłącznie adresowi IP należącemu do internala. Za breaking-glass robi KVM od dostawcy VPS, w awaryjnej sytuacji posłuży jako access point do systemu DMZ.
 
-(Zrzuty ekranu będą opublikowane do 12 lutego 2026 r.)
+<img width="472" height="118" alt="SSH-password-internal" src="https://github.com/user-attachments/assets/c0e498e7-744f-4c0a-bc72-d1ffa942905a" />
+<br></br>
+<img width="503" height="103" alt="SSH-key-internal" src="https://github.com/user-attachments/assets/5579eff6-bef5-4a7d-adbc-0d701935e1c9" />
+
+(Powyżej dwa przykłady logowania do Internal VPS z mojej domowej sieci, pierwszy zablokowany przy próbie z hasłem, natomiast drugi prawidłowy z privatekey)
+<br></br>
+<br></br>
+<img width="663" height="158" alt="ssh-pass-mypc-dmz" src="https://github.com/user-attachments/assets/7b3bfbe2-8d8a-4b92-858e-4ac64f9d7439" />
+
+(Powyższy zrzut ekranu przedstawia logowanie z mojej domowej sieci na dmz, firewall zezwala tylko na IP Internal VPS'a)
+<br></br>
+<br></br>
+<img width="435" height="66" alt="ssh-pass-internal-dmz" src="https://github.com/user-attachments/assets/2a8cad04-0f27-468b-ba04-19234cf696f9" />
+<br></br>
+<img width="528" height="78" alt="SSH-key-internal-dmz" src="https://github.com/user-attachments/assets/1bf292f5-8686-4390-967f-ca1e597bc7d8" />
+
+(Powyżej dwa przykłady logowania do DMZ VPS z Internal VPS, pierwszy zablokowany przy próbie z hasłem, natomiast drugi prawidłowy z privatekey)
+<br></br>
+<br></br>
+
+
 
 ## Patchowanie serwera Hytale
 
@@ -12,7 +32,7 @@ Po reboocie serwera okazało się, że zablkowanie użytkownikowi hytale dostęp
 który uniemożliwił uruchomienie tmux. Prawdopodobnie wcześniejsze, ręczne uruchomienie tego procesu musiało pozostać aktywne co odciągnęło moją uwagę i stworzyło wrażenie działającego poprawnie procesu.
 Ciężko mi to jednoznacznie stwierdzić, gdyż cały ten projekt jest moją pierwszą taką infrastrukturą w oparciu o Linuxa, co sprawia, że ciągle doświadczam i uczę się nowych rzeczy.
 Na dzień dzisiejszy jest już w porządku, serwer Hytale startuje po reboocie, natomiast blokada SSH dla użytkownika hytale jest opisana wyłącznie w plikach konfiguracyjnych.
-
+<br></br>
 
 # 7 luty 2026 r.
 
@@ -39,10 +59,16 @@ Aktualnie Wazuh monitoruje:
 - działania reguł zapory UFW
 - reakcje i bany generowane przez fail2ban
 
-Więcej zrzutów ekranu zostanie dodanych w kolejnej aktualizacji changelog'a.
 
-
+<img width="689" height="173" alt="wazuh_agents" src="https://github.com/user-attachments/assets/42809731-69f1-4557-8a2e-0a5e556e7877" />
+<br></br>
 <img width="1919" height="1031" alt="wazuh_dashboard" src="https://github.com/user-attachments/assets/a0b96ed7-70c5-49d8-8673-11cd1e66253a" />
+
+(Aby zalogować się na stronę dashboardu należy połączyć się z IP Internal VPS, z sieci domowej na porcie 443, a następnie podać dane do logowania)
+
+<br></br>
+
+<img width="1919" height="965" alt="wazuh-agent" src="https://github.com/user-attachments/assets/b0d5453c-4453-4ce4-a1c8-2f50f2d81a29" />
 
 
 
