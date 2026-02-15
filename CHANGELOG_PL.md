@@ -1,3 +1,60 @@
+# 15 luty 2026 r.
+
+## ChatGPT API (DMZ -> Internal)
+
+Nadszedł dzień, w którym na Internal VPS wdrożony został skrypt umożliwiający poprzez VPN'a promptowanie do ChatGPT (model 4o) przez DMZ VPS'a. Początkowa architektura zakładała wywołanie prompta z poziomu serwera Hytale, lecz niestety na aktualnym (wczesnym) etapie rozwoju tej gry, a także z powodu moich umiejętności, bardziej ich braku nie jestem w stanie stworzyć pluginu/moda dodającego nową komendą do serwera gry oraz działającego w przedstawiony przeze mnie sposób (nawet z pomocą dostępnych mi narzędzi) wliczając w to zapewnienie bezpieczeństwa jakiego oczekuję od technologii zbudowanych w tym projekcie.
+
+(Disclaimer: Dużą rolę we wprowadzeniu API do ChataGPT miało narzędzie o tej samej nazwie (tj. ChatGPT), który pomógł mi bardzo we wdrożeniu tego rozwiązania ze względu na napotkane przeze mnie przeszkody ze zgodnością modułów Pythona, a także ze względu na mój brak znajomości tego języka programowania)
+
+### Co utworzyłem?
+
+1. Nowego użytkownika na Internal VPS o nazwie "api".
+2. Izolowane środowisko do Pythona (venv) oraz instalacja modułów:
+   - fastapi
+   - uvicorn
+   - openai
+   - pydantic
+3. Skrypt napisany w pythonie, który zostaje uruchomiony po każdym reboocie, dzięki systemd.
+4. Plik konfiguracyjny, który przechowuje mój klucz API do ChatGPT, a także token potrzebny do wywołania prompta.
+
+
+### Jak działa skrypt?
+
+1. Waliduje obecność klucza API oraz tokenu w plikach konfiguracyjnych, po czym osadza je w zmiennych potrzebnych do daleszego działania skryptu.
+2. Gromadzi logi w pliku "ai.log"
+3. Uruchamia aplikację FastAPI wystawioną przez serwer ASGI (uvicorn) na adresie 10.10.10.1 oraz porcie 8000.
+4. Udostępnia endpoint: POST /ask , który przyjmuje JSON w formacie: {"prompt": "Treść zapytania"}
+5. Sprawdza nagłówek x-token przesłany przez DMZ (gdy zły zwraca 403 Forbidden, gdy dobry kontynuuje)
+6. Wysyła zapytanie do modelu gpt-4o-mini poprzez oficjalne SDK OpenAI.
+7. Loguje zużycie tokenów w celu monitorowania kosztów.
+8. Zwraca odpowiedź w formacie JSON do DMZ.
+
+
+### Dodatkowe zabezpieczenia
+
+- port 8000 jest dostępny wyłącznie z adresu VPN 10.10.10.2 (DMZ)
+- użytkownik systemowy api nie posiada dostępu do SSH
+- klucz API nie znajduje się w repozytorium ani w kodzie źródłowym
+- serwis jest zarządzany przez systemd
+
+
+<img width="761" height="713" alt="API-before-prompt" src="https://github.com/user-attachments/assets/07e9c78e-5433-48ab-857c-cee47c6b7966" />
+<br></br>
+<img width="756" height="867" alt="API-after-prompt" src="https://github.com/user-attachments/assets/beeabf3e-7130-4846-9266-00e5cad38413" />
+<br></br>
+<img width="844" height="394" alt="api_systemd" src="https://github.com/user-attachments/assets/ae74077b-360b-4428-b457-a17c750752b4" />
+<br></br>
+<img width="836" height="323" alt="api_env_conf" src="https://github.com/user-attachments/assets/b6aeb387-4eba-4667-8559-8f2a343e694a" />
+<br></br>
+<img width="841" height="826" alt="python-api" src="https://github.com/user-attachments/assets/b4e91219-0951-4db7-b0a5-2285b0e3af01" />
+<br></br>
+<img width="844" height="570" alt="python-api2" src="https://github.com/user-attachments/assets/0645e170-57cb-4e69-924a-3952c339a58f" />
+
+
+
+
+
+
 # 11 luty 2026 r.
 
 ## Aktualizacja kluczy SSH
