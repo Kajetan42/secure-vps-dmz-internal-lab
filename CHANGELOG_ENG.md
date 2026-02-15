@@ -1,3 +1,55 @@
+# February 15, 2026
+
+## ChatGPT API (DMZ -> Internal)
+
+The day came when a script was implemented on the Internal VPS enabling prompting to ChatGPT (model 4o) via VPN for the VPS's DMZ. The initial architecture assumed sending the prompt from the Hytale server, but unfortunately, at the current (early) stage of development of this game, and due to my skills, or rather lack thereof, I am unable to create a plugin/mod that would add a new command to the game server and operate in the manner I've described (even with the tools available), including ensuring the security I expect from the technologies built in this project.
+
+(Disclaimer: Artificial Intelligence (ChatGPT) played a significant role in introducing the API to ChatGPT, which greatly helped me implement this solution due to the hurdles I encountered with Python module compatibility and my lack of knowledge of this programming language)
+
+### What did I create?
+
+1. A new user on the Internal VPS named "api".
+2. Isolated Python environment (venv) and module installation:
+   - fastapi
+   - uvicorn
+   - openai
+   - pydantic
+3. A script written in Python that runs after every reboot thanks to systemd.
+4. A configuration file that stores my ChatGPT API key and the token needed to send the prompt.
+
+
+### How does the script work?
+
+1. Validates the presence of the API key and token in the configuration files and then embeds them in variables needed for the script to continue running.
+2. Collects logs in the "ai.log" file.
+3. Runs the FastAPI application exposed by the ASGI server (uvicorn) on address 10.10.10.1 and port 8000.
+4. Provides an endpoint: POST /ask , which accepts JSON in the format: {"prompt": "Request body"}
+5. Checks the x-token header sent by the DMZ (returns 403 Forbidden if bad, continues if good).
+6. Sends a query to the gpt-4o-mini model via the official OpenAI SDK.
+7. Logs token usage to monitor costs.
+8. Returns the response in JSON format to the DMZ.
+
+### Additional Security
+
+- port 8000 is only accessible from the VPN address 10.10.10.2 (DMZ)
+- the api user does not have SSH access
+- the API key is not in the repository or source code
+- the service is managed by systemd
+
+<img width="761" height="713" alt="API-before-prompt" src="https://github.com/user-attachments/assets/07e9c78e-5433-48ab-857c-cee47c6b7966" />
+<br></br>
+<img width="756" height="867" alt="API-after-prompt" src="https://github.com/user-attachments/assets/beeabf3e-7130-4846-9266-00e5cad38413" />
+<br></br>
+<img width="844" height="394" alt="api_systemd" src="https://github.com/user-attachments/assets/ae74077b-360b-4428-b457-a17c750752b4" />
+<br></br>
+<img width="836" height="323" alt="api_env_conf" src="https://github.com/user-attachments/assets/b6aeb387-4eba-4667-8559-8f2a343e694a" />
+<br></br>
+<img width="841" height="826" alt="python-api" src="https://github.com/user-attachments/assets/b4e91219-0951-4db7-b0a5-2285b0e3af01" />
+<br></br>
+<img width="844" height="570" alt="python-api2" src="https://github.com/user-attachments/assets/0645e170-57cb-4e69-924a-3952c339a58f" />
+
+
+
 # February 11, 2026
 
 ## Updating SSH Keys
