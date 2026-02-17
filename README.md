@@ -5,6 +5,13 @@ A security-focused VPS lab presenting an architecture with a server in the DMZ a
 🚧 Project status: in progress, information about ongoing changes can be found in CHANGELOG_ENG.md
 
 [Jump to Polish version here](#secure-vps-dmz---internal-lab---polish-version)
+<br></br>
+## IMPORTANT CHANGE - ROADMAP
+
+Due to previous complications with including the Hytale game server in the project, I decided to exclude it from the project due to my lack of Java programming skills, and the early stage of the game, which meant there wasn't extensive and easily accessible documentation or video material guiding me through how to create the script I wanted. I didn't want to force myself to do this, risk the security of my architecture, or pretend I fully understood what was happening behind the scenes of the code and the files involved in executing the script's commands.
+
+For this reason, I have updated the ROADMAP and established new future objectives: deploying a Web Server based on the same mechanism previously used for the game server (i.e., tmux and systemd) which would allow me to send prompt to ChatGPT via the API, as well as retrieval of specific rows and columns from specific database tables. The communication will occur between the DMZ VPS and the Internal VPS through a VPN connection.
+<br></br>
 
 ## Project Goals
 
@@ -28,7 +35,7 @@ Technical Specifications:
 
 
 Features:
-- game server (Hytale)
+- web server
 - basic network security
 - limited administrative access
 - security log source
@@ -104,7 +111,7 @@ The goal is to simulate core SOC tasks:
 - [x] Site-to-site VPN configuration
 - [x] SIEM / IDS Deployment
 - [x] Log centralization
-- [ ] Implementation of an SSH-based model Keys
+- [x] Implementation of an SSH-based model Keys
 - [ ] Database and API setup
 - [ ] Security Testing & Attack Scenarios
 
@@ -124,6 +131,13 @@ Laboratorium VPS ukierunkowane na bezpieczeństwo, prezentujące architekturę z
 🚧 **Status projektu:** w trakcie realizacji, informacje o bieżących zmianach można znaleźć w CHANGELOG_PL.md
 
 [Back to English version](#secure-vps-dmz---internal-lab)
+<br></br>
+## WAŻNA ZMIANA - ROADMAP
+
+Ze względu na poprzednie komplikacje związane z włączeniem w projekt, serwera gry Hytale, zdecydowałem się na wyłączenie go z tego projektu ze względu na brak moich umiejętności z zakresu programowania Java, a także zbyt wczesnego etapu gry, a co za tym idzie braku obszernej i łatwo dostępnej dokumentacji oraz materiałów wideo kierujących jak stworzyć skrypt, który chciałem. Nie chciałbym na siłę walczyć z tym oraz ryzykować bezpieczeństwem swojej architektury, a także udawać, że wiedziałbym w pełni co się dzieje za kodem oraz zaangażowanymi w wykonywanie poleceń skryptu plikami.
+
+Z tego powodu zdecydowałem się zaaktualizować ROADMAPĘ oraz ustanowić za przyszłe cele postawienie Web Servera, na takim samym mechaniźmie jak serwer do gry (tj. tmux, systemd), przez którego możliwe będzie wywoływanie promptów do ChataGPT, dzięki API, a także wyciąganie konkretnych wierszy i kolumn z określonych tablic baz danych. Odbywać się to będzie dzięki komunikacji DMZ VPS z Internal VPS przez VPN. 
+<br></br>
 
 ## Cele projektu
 
@@ -231,7 +245,7 @@ Celem jest symulacja podstawowych zadań realizowanych w SOC:
 - [x] Konfiguracja VPN site-to-site
 - [x] Wdrożenie SIEM / IDS 
 - [x] Centralizacja logów
-- [ ] Wdrożenie modelu SSH opartego o klucze
+- [x] Wdrożenie modelu SSH opartego o klucze
 - [ ] Postawienie bazy danych i API
 - [ ] Testowe scenariusze ataków (bruteforce, skany)
 
