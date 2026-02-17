@@ -1,3 +1,13 @@
+# 17 luty 2026 r.
+
+## WAŻNA ZMIANA - ROADMAP
+
+Ze względu na poprzednie komplikacje związane z włączeniem w projekt, serwera gry Hytale, zdecydowałem się na wyłączenie go z tego projektu ze względu na brak moich umiejętności z zakresu programowania Java, a także zbyt wczesnego etapu gry, a co za tym idzie braku obszernej i łatwo dostępnej dokumentacji oraz materiałów wideo kierujących jak stworzyć skrypt, który chciałem. Nie chciałbym na siłę walczyć z tym oraz ryzykować bezpieczeństwem swojej architektury, a także udawać, że wiedziałbym w pełni co się dzieje za kodem oraz zaangażowanymi w wykonywanie poleceń skryptu plikami.
+
+Z tego powodu zdecydowałem się zaaktualizować ROADMAPĘ oraz ustanowić za przyszłe cele postawienie Web Servera, na takim samym mechaniźmie jak serwer do gry (tj. tmux, systemd), przez którego możliwe będzie wywoływanie promptów do ChataGPT, dzięki API, a także wyciąganie konkretnych wierszy i kolumn z określonych tablic baz danych. Odbywać się to będzie dzięki komunikacji DMZ VPS z Internal VPS przez VPN. 
+
+<br></br>
+
 # 15 luty 2026 r.
 
 ## ChatGPT API (DMZ -> Internal)
