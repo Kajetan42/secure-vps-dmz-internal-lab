@@ -1,3 +1,13 @@
+# February 17, 2026
+
+## IMPORTANT CHANGE - ROADMAP
+
+Due to previous complications with including the Hytale game server in the project, I decided to exclude it from the project due to my lack of Java programming skills, and the early stage of the game, which meant there wasn't extensive and easily accessible documentation or video material guiding me through how to create the script I wanted. I didn't want to force myself to do this, risk the security of my architecture, or pretend I fully understood what was happening behind the scenes of the code and the files involved in executing the script's commands.
+
+For this reason, I have updated the ROADMAP and established new future objectives: deploying a Web Server based on the same mechanism previously used for the game server (i.e., tmux and systemd) which would allow me to send prompt to ChatGPT via the API, as well as retrieval of specific rows and columns from specific database tables. The communication will occur between the DMZ VPS and the Internal VPS through a VPN connection.
+
+<br></br>
+
 # February 15, 2026
 
 ## ChatGPT API (DMZ -> Internal)
