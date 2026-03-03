@@ -1,3 +1,16 @@
+# March 3, 2026 r.
+
+## Introducing Nginx
+
+After a short break, I'm back to regularly updating the project on GitHub.
+This update covers the installation of the Nginx HTTP server.
+Upcoming updates will focus on setting up a website to test communication between the end user and the server, as well as between the DMZ server and the internal server (API, GET/POST requests).
+
+<br></br>
+<img width="1918" height="988" alt="NGINX" src="https://github.com/user-attachments/assets/a044ca1d-6400-40ef-9e22-3b310ea458a6" />
+<br></br>
+
+
 # February 17, 2026
 
 ## IMPORTANT CHANGE - ROADMAP
