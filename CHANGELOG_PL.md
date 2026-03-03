@@ -1,3 +1,14 @@
+# 3 marzec 2026 r.
+
+## Wprowadzenie Nginx
+
+Po dłuższej przerwie wracam do regularnego aktualizowania projektu na GitHubie. Dzisiaj przychodzę z małą aktualizacją, a dokładniej zainstalowaniem serwera HTTP, jakim jest Nginx. W następnych aktualizacjach przygotowana zostanie strona internetowa, na której będą odbywać się testy komunikacji między end-userem a serwerem oraz DMZ serwerem a internal serwerem (API, GET, POST).
+
+<br></br>
+<img width="1918" height="988" alt="NGINX" src="https://github.com/user-attachments/assets/a044ca1d-6400-40ef-9e22-3b310ea458a6" />
+<br></br>
+
+
 # 17 luty 2026 r.
 
 ## WAŻNA ZMIANA - ROADMAP
